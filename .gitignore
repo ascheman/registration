@@ -2,3 +2,6 @@
 *.iml
 target
 .serverless
+deploy.sh
+.terraform/
+.terraform.lock.hcl
