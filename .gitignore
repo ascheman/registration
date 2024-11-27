@@ -1,7 +1,11 @@
 .idea
 *.iml
 target
+node_modules/
 .serverless
 deploy.sh
 .terraform/
 .terraform.lock.hcl
+terraform.tfstate
+*.err
+*.log

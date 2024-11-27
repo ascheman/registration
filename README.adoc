@@ -1,5 +1,7 @@
-= JUG Registration App
 :icons: font
+:toc: left
+
+= JUG Registration App
 
 https://quarkus.io[Quarkus] based application.
 
@@ -97,12 +99,97 @@ Native, Docker will be used.
 
 == Deployment
 
-https://www.serverless.com/[Serverless Framework]
+=== Local / Serverless Deployment
 
-=== JUG DA
+Using https://www.serverless.com/[Serverless Framework] via link:src/docker/docker-compose.yml[Docker].
+
+==== Start SLS
+
+Build the software with
+
+  mvn test
+
+Start the Framework via
+
+  docker compose -f src/docker/docker-compose.yml up -d
+
+==== JUG DA
 
  $ TENANT=jugda sls deploy
 
-=== Cyberland
+==== Cyberland
 
  $ TENANT=cyberland sls deploy
+
+=== Cloud Formation Deployment
+
+Set environment (Once per session)
+
+[source, bash]
+----
+: ${VERSION:="2.0-SNAPSHOT"}
+: ${BUILD:="$(date +%Y%m%d-%H%M%S)"}
+: ${AWS_ACCOUNT_ID:="942705247267"}
+: ${AWS_DEFAULT_REGION:="us-east-1"}
+export VERSION BUILD AWS_ACCOUNT_ID AWS_DEFAULT_REGION
+----
+
+Build the software with
+
+[source, bash]
+mvn test -Pnative
+
+Copy Basic Authorizer to S3 (Once per session)
+
+[source, bash]
+----
+aws s3 cp basicAuthorizer.zip \
+  s3://${AWS_ACCOUNT_ID}.serverless.deployments.${AWS_DEFAULT_REGION}/serverless/jugda-registration/${VERSION}/${BUILD}/basicAuthorizer.zip
+----
+
+Copy Basic Authorizer to S3 (Repeat after each build)
+
+[source, bash]
+----
+aws s3 cp target/jugda-registration-runner \
+  s3://${AWS_ACCOUNT_ID}.serverless.deployments.${AWS_DEFAULT_REGION}/serverless/jugda-registration/${VERSION}/${BUILD}/jugda-registration-runner
+----
+
+Copy Lambda `function.zip` to S3 (Repeat after each build)
+
+[source, bash]
+----
+aws s3 cp target/function.zip \
+  s3://${AWS_ACCOUNT_ID}.serverless.deployments.${AWS_DEFAULT_REGION}/serverless/jugda-registration/${VERSION}/${BUILD}/function.zip
+----
+
+Compute SHA256 Digests ...
+
+[source, bash]
+----
+openssl dgst -sha256 -binary basicAuthorizer.zip | openssl enc -base64
+openssl dgst -sha256 -binary target/jugda-registration-runner | openssl enc -base64
+openssl dgst -sha256 -binary target/function.zip | openssl enc -base64
+----
+
+... And update link:cloudformation-template-update-stack.json[] with it.
+
+Copy CF Template to S3 (after each rebuild)
+
+[source, bash]
+----
+aws s3 cp cloudformation-template-update-stack.json \
+  s3://cf-templates-jy7mjdg4ftr2-us-east-1/${BUILD}-cloudformation-template-update-stack.json
+----
+
+Update CF Stack
+
+WARNING: Incomplete!
+
+[source, bash]
+----
+aws cloudformation update-stack \
+  --stack-name jugda-registration \
+  --template-url 'https://cf-templates-jy7mjdg4ftr2-us-east-1.s3.amazonaws.com/2022-08-09T16%3A45%3A13%2B02%3A00-cloudformation-template-update-stack.json' \
+
+----

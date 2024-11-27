@@ -1,12 +1,17 @@
 package de.jugda.registration;
 
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.config.DecoderConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
+import io.restassured.path.xml.XmlPath;
+import lombok.val;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -37,13 +42,28 @@ public class AdminFunctionalTest extends FunctionalTestBase {
 
     @Test
     void testEventRegistrations() {
-        given().pathParam("eventId", EVENT_ID)
+        val response = given()
+            .config(new RestAssuredConfig().decoderConfig(new DecoderConfig("UTF-8")))
+            .pathParam("eventId", EVENT_ID)
             .get("/admin/events/{eventId}")
             .then()
+            ;
+
+        response
+            .contentType(ContentType.HTML)
             .statusCode(200)
-            .body("html.body.div.div.h2", containsString("Anmeldungen für Event am"))
+//            .body("html.body.div.div.h2", containsString("Anmeldungen für Event am"))
             .body("html.body.div.table.tbody.tr.size()", is(PARTICIPANTS.size())) // all participants should be registered
         ;
+//        System.out.println("response = '" + response.extract() + "'");
+        String body = response.extract().body().asString();
+//        System.out.println("body = '" + body + "'");
+        XmlPath xmlPath = new XmlPath(XmlPath.CompatibilityMode.HTML, body)
+//            .using(new XmlPathConfig("UTF-8"))
+            ;
+        String h2 = xmlPath.get("html.body.div.div.h2");
+//        System.out.println("h2 = '" + h2 + "'");
+        assertThat (h2, containsString("Anmeldungen für Event am"));
     }
 
     // Upload additional webinar data to event

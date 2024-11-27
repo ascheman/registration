@@ -1,0 +1,96 @@
+InstanceProfiles:
+- Arn: arn:aws:iam::942705247267:instance-profile/jx3-20210504-0220210504132527722100000015
+  CreateDate: '2021-05-04T13:25:28+00:00'
+  InstanceProfileId: AIPA5W7M4QQRRBYRWQIQV
+  InstanceProfileName: jx3-20210504-0220210504132527722100000015
+  Path: /
+  Roles:
+  - Arn: arn:aws:iam::942705247267:role/jx3-20210504-0220210504132523940400000013
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ec2.amazonaws.com
+        Sid: EKSWorkerAssumeRole
+      Version: '2012-10-17'
+    CreateDate: '2021-05-04T13:25:24+00:00'
+    Path: /
+    RoleId: AROA5W7M4QQR5C5T76UEK
+    RoleName: jx3-20210504-0220210504132523940400000013
+- Arn: arn:aws:iam::942705247267:instance-profile/jx3-20210504-0320210504172117154200000016
+  CreateDate: '2021-05-04T17:21:18+00:00'
+  InstanceProfileId: AIPA5W7M4QQRRCCUOQSC2
+  InstanceProfileName: jx3-20210504-0320210504172117154200000016
+  Path: /
+  Roles:
+  - Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210504172113726700000015
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ec2.amazonaws.com
+        Sid: EKSWorkerAssumeRole
+      Version: '2012-10-17'
+    CreateDate: '2021-05-04T17:21:14+00:00'
+    Path: /
+    RoleId: AROA5W7M4QQRSMOLEC4ZT
+    RoleName: jx3-20210504-0320210504172113726700000015
+- Arn: arn:aws:iam::942705247267:instance-profile/jx3-20210504-0320210505091653427400000015
+  CreateDate: '2021-05-05T09:16:53+00:00'
+  InstanceProfileId: AIPA5W7M4QQRYX3QQZIYR
+  InstanceProfileName: jx3-20210504-0320210505091653427400000015
+  Path: /
+  Roles:
+  - Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505091649517900000013
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ec2.amazonaws.com
+        Sid: EKSWorkerAssumeRole
+      Version: '2012-10-17'
+    CreateDate: '2021-05-05T09:16:50+00:00'
+    Path: /
+    RoleId: AROA5W7M4QQRT6MKNHMEW
+    RoleName: jx3-20210504-0320210505091649517900000013
+- Arn: arn:aws:iam::942705247267:instance-profile/jx3-20210504-0320210505104544227900000016
+  CreateDate: '2021-05-05T10:45:44+00:00'
+  InstanceProfileId: AIPA5W7M4QQRSEHVARPZ3
+  InstanceProfileName: jx3-20210504-0320210505104544227900000016
+  Path: /
+  Roles:
+  - Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505104541787400000015
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ec2.amazonaws.com
+        Sid: EKSWorkerAssumeRole
+      Version: '2012-10-17'
+    CreateDate: '2021-05-05T10:45:42+00:00'
+    Path: /
+    RoleId: AROA5W7M4QQR3UPJUNTWN
+    RoleName: jx3-20210504-0320210505104541787400000015
+- Arn: arn:aws:iam::942705247267:instance-profile/jx3-2021050420210504124044424500000016
+  CreateDate: '2021-05-04T12:40:44+00:00'
+  InstanceProfileId: AIPA5W7M4QQRT4I4AOBRP
+  InstanceProfileName: jx3-2021050420210504124044424500000016
+  Path: /
+  Roles:
+  - Arn: arn:aws:iam::942705247267:role/jx3-2021050420210504124041347300000015
+    AssumeRolePolicyDocument:
+      Statement:
+      - Action: sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service: ec2.amazonaws.com
+        Sid: EKSWorkerAssumeRole
+      Version: '2012-10-17'
+    CreateDate: '2021-05-04T12:40:43+00:00'
+    Path: /
+    RoleId: AROA5W7M4QQRZLV4VI24J
+    RoleName: jx3-2021050420210504124041347300000015

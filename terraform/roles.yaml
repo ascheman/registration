@@ -1,0 +1,296 @@
+Roles:
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: eks.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T12:30:54+00:00'
+  Description: Allows Amazon EKS to call AWS services on your behalf.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/eks.amazonaws.com/
+  RoleId: AROA5W7M4QQRRTPCX3YYE
+  RoleName: AWSServiceRoleForAmazonEKS
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/ops.apigateway.amazonaws.com/AWSServiceRoleForAPIGateway
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ops.apigateway.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T10:45:14+00:00'
+  Description: The Service Linked Role is used by Amazon API Gateway.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/ops.apigateway.amazonaws.com/
+  RoleId: AROA5W7M4QQRQ6U6VYYUW
+  RoleName: AWSServiceRoleForAPIGateway
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: autoscaling.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T12:40:53+00:00'
+  Description: Default Service-Linked Role enables access to AWS Services and Resources
+    used or managed by Auto Scaling
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/autoscaling.amazonaws.com/
+  RoleId: AROA5W7M4QQR4JHU5PJYJ
+  RoleName: AWSServiceRoleForAutoScaling
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/logger.cloudfront.amazonaws.com/AWSServiceRoleForCloudFrontLogger
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: logger.cloudfront.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T11:00:42+00:00'
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/logger.cloudfront.amazonaws.com/
+  RoleId: AROA5W7M4QQRRUAN5NFDC
+  RoleName: AWSServiceRoleForCloudFrontLogger
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ecs.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T11:23:07+00:00'
+  Description: Role to enable Amazon ECS to manage your cluster.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/ecs.amazonaws.com/
+  RoleId: AROA5W7M4QQRXYZKVIVUQ
+  RoleName: AWSServiceRoleForECS
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: elasticloadbalancing.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T13:30:11+00:00'
+  Description: Allows ELB to call AWS services on your behalf.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/elasticloadbalancing.amazonaws.com/
+  RoleId: AROA5W7M4QQR2PBYEDWVQ
+  RoleName: AWSServiceRoleForElasticLoadBalancing
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/replicator.lambda.amazonaws.com/AWSServiceRoleForLambdaReplicator
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: replicator.lambda.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T11:00:42+00:00'
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/replicator.lambda.amazonaws.com/
+  RoleId: AROA5W7M4QQR3EQQEWF2Z
+  RoleName: AWSServiceRoleForLambdaReplicator
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/organizations.amazonaws.com/AWSServiceRoleForOrganizations
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: organizations.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-03T16:26:05+00:00'
+  Description: Service-linked role used by AWS Organizations to enable integration
+    of other AWS services with Organizations.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/organizations.amazonaws.com/
+  RoleId: AROA5W7M4QQR27TSX2J75
+  RoleName: AWSServiceRoleForOrganizations
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/rds.amazonaws.com/AWSServiceRoleForRDS
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: rds.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T11:03:51+00:00'
+  Description: Allows Amazon RDS to manage AWS resources on your behalf
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/rds.amazonaws.com/
+  RoleId: AROA5W7M4QQR7YMQ34BGG
+  RoleName: AWSServiceRoleForRDS
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: support.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-03T16:26:04+00:00'
+  Description: Enables resource access for AWS to provide billing, administrative
+    and support services
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/support.amazonaws.com/
+  RoleId: AROA5W7M4QQR6REEHUWST
+  RoleName: AWSServiceRoleForSupport
+- Arn: arn:aws:iam::942705247267:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: trustedadvisor.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2021-05-03T16:26:04+00:00'
+  Description: Access for the AWS Trusted Advisor Service to help reduce cost, increase
+    performance, and improve security of your AWS environment.
+  MaxSessionDuration: 3600
+  Path: /aws-service-role/trustedadvisor.amazonaws.com/
+  RoleId: AROA5W7M4QQRUU2ZY567U
+  RoleName: AWSServiceRoleForTrustedAdvisor
+- Arn: arn:aws:iam::942705247267:role/cyberland-registration-prod-us-east-1-lambdaRole
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: lambda.amazonaws.com
+    Version: '2012-10-17'
+  CreateDate: '2022-08-09T15:44:21+00:00'
+  Description: ''
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQR55ZB22QKS
+  RoleName: cyberland-registration-prod-us-east-1-lambdaRole
+- Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210504172113726700000015
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ec2.amazonaws.com
+      Sid: EKSWorkerAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T17:21:14+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRSMOLEC4ZT
+  RoleName: jx3-20210504-0320210504172113726700000015
+- Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505090505759200000002
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: eks.amazonaws.com
+      Sid: EKSClusterAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T09:05:06+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRSQHIA5HGK
+  RoleName: jx3-20210504-0320210505090505759200000002
+- Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505091649517900000013
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ec2.amazonaws.com
+      Sid: EKSWorkerAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T09:16:50+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRT6MKNHMEW
+  RoleName: jx3-20210504-0320210505091649517900000013
+- Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505103350735100000008
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: eks.amazonaws.com
+      Sid: EKSClusterAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T10:33:51+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQR5DNLM4BDB
+  RoleName: jx3-20210504-0320210505103350735100000008
+- Arn: arn:aws:iam::942705247267:role/jx3-20210504-0320210505104541787400000015
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ec2.amazonaws.com
+      Sid: EKSWorkerAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-05T10:45:42+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQR3UPJUNTWN
+  RoleName: jx3-20210504-0320210505104541787400000015
+- Arn: arn:aws:iam::942705247267:role/jx3-2021050420210504123019322500000006
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: eks.amazonaws.com
+      Sid: EKSClusterAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T12:30:19+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQR6YB5HJ56T
+  RoleName: jx3-2021050420210504123019322500000006
+- Arn: arn:aws:iam::942705247267:role/jx3-2021050420210504124041347300000015
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: ec2.amazonaws.com
+      Sid: EKSWorkerAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T12:40:43+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRZLV4VI24J
+  RoleName: jx3-2021050420210504124041347300000015
+- Arn: arn:aws:iam::942705247267:role/jx3-2021050420210504130332478900000007
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        Service: eks.amazonaws.com
+      Sid: EKSClusterAssumeRole
+    Version: '2012-10-17'
+  CreateDate: '2021-05-04T13:03:32+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRTAAY5D73P
+  RoleName: jx3-2021050420210504130332478900000007
+- Arn: arn:aws:iam::942705247267:role/OrganizationAccountAccessRole
+  AssumeRolePolicyDocument:
+    Statement:
+    - Action: sts:AssumeRole
+      Effect: Allow
+      Principal:
+        AWS: arn:aws:iam::542528412726:root
+    Version: '2012-10-17'
+  CreateDate: '2021-05-03T16:26:04+00:00'
+  MaxSessionDuration: 3600
+  Path: /
+  RoleId: AROA5W7M4QQRQIXUZPBQM
+  RoleName: OrganizationAccountAccessRole

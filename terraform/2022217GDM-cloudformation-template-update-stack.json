@@ -154,21 +154,8 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": {
-            "Fn::Join": [
-              ".",
-              [
-                {
-                  "Ref": "AWS::AccountId"
-                },
-                "serverless.deployments",
-                {
-                  "Ref": "AWS::Region"
-                }
-              ]
-            ]
-          },
-          "S3Key": "serverless/jugda-registration/2.0-SNAPSHOT/20220809-175039/function.zip"
+          "S3Bucket": "dasniko.serverless.deployments.eu-central-1",
+          "S3Key": "serverless/cyberland-registration/prod/1656520690899-2022-06-29T16:38:10.899Z/function.zip"
         },
         "Handler": "not.used.in.provided.runtime",
         "Runtime": "provided",
@@ -202,21 +189,8 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": {
-            "Fn::Join": [
-              ".",
-              [
-                {
-                  "Ref": "AWS::AccountId"
-                },
-                "serverless.deployments",
-                {
-                  "Ref": "AWS::Region"
-                }
-              ]
-            ]
-          },
-          "S3Key": "serverless/jugda-registration/2.0-SNAPSHOT/20220809-175039/function.zip"
+          "S3Bucket": "dasniko.serverless.deployments.eu-central-1",
+          "S3Key": "serverless/cyberland-registration/prod/1656520690899-2022-06-29T16:38:10.899Z/function.zip"
         },
         "Handler": "not.used.in.provided.runtime",
         "Runtime": "provided",
@@ -252,21 +226,8 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": {
-            "Fn::Join": [
-              ".",
-              [
-                {
-                  "Ref": "AWS::AccountId"
-                },
-                "serverless.deployments",
-                {
-                  "Ref": "AWS::Region"
-                }
-              ]
-            ]
-          },
-          "S3Key": "serverless/jugda-registration/2.0-SNAPSHOT/20220809-175039/basicAuthorizer.zip"
+          "S3Bucket": "dasniko.serverless.deployments.eu-central-1",
+          "S3Key": "serverless/cyberland-registration/prod/1656520690899-2022-06-29T16:38:10.899Z/basicAuthorizer.zip"
         },
         "Handler": "src/main/js/basicAuthorizr.handler",
         "Runtime": "nodejs12.x",
@@ -305,7 +266,7 @@
         "FunctionName": {
           "Ref": "BasicAuthorizerLambdaFunction"
         },
-        "CodeSha256": "mTRKThBHE4UA/J6T2GUhoDcBsmubwm0WdQyz6SCs1Xo="
+        "CodeSha256": "8SUkpKtbnLL2fRBLOuVuzkYHO6DPdeKWTs9qS5QYVlA="
       }
     },
     "AdminLambdaVersionahbTalFqGqBbJrQ5qiOh5yEcwLIY3LeuPXzs2Nmg": {
@@ -315,7 +276,7 @@
         "FunctionName": {
           "Ref": "AdminLambdaFunction"
         },
-        "CodeSha256": "PJd05g7hAbAIsWvYufaeg/zQE4gE7/KHSjQFdIkiioQ="
+        "CodeSha256": "oQz/w6+DuSjjRHc6yCsOMqnYL0XeaccapVw6ubdh/M0="
       }
     },
     "PublicLambdaVersionSrZeqZg6qodEGrfex8cC33sH38F5wvfjz23VRqUXo": {
@@ -325,7 +286,7 @@
         "FunctionName": {
           "Ref": "PublicLambdaFunction"
         },
-        "CodeSha256": "PJd05g7hAbAIsWvYufaeg/zQE4gE7/KHSjQFdIkiioQ="
+        "CodeSha256": "oQz/w6+DuSjjRHc6yCsOMqnYL0XeaccapVw6ubdh/M0="
       }
     },
     "ApiGatewayRestApi": {

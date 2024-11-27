@@ -1,71 +1,85 @@
 service: ${self:custom.tenant}-registration
 
+plugins:
+  - serverless-localstack
+  - serverless-deployment-bucket
+
+frameworkVersion: '2'
+
 provider:
   name: aws
-  runtime: provided.al2
-  architecture: arm64
+  runtime: java11
   stage: prod
   region: eu-central-1
   endpointType: REGIONAL
   apiGateway:
     shouldStartNameWithService: true
-  memorySize: 512
+  memorySize: 3072
   timeout: 30
-  deploymentBucket:
-    name: dasniko.serverless.deployments.${self:provider.region}
+  deploymentBucket: ascheman.serverless.deployments.${self:provider.region}
   logRetentionInDays: 30
   environment:
-    DISABLE_SIGNAL_HANDLERS: 'true'
     APP_DYNAMODB_TABLE: ${self:service}
-    APP_EVENTS_DATA_KEY: registration/${self:custom.tenant}/eventData.json
+    APP_EVENTS_DATA_BUCKET: ${self:custom.tenant}
     APP_TENANT_ID: ${self:custom.tenant}
     QUARKUS_PROFILE: ${self:custom.tenant}
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - dynamodb:Query
-            - dynamodb:Scan
-            - dynamodb:GetItem
-            - dynamodb:PutItem
-            - dynamodb:UpdateItem
-            - dynamodb:DeleteItem
-          Resource:
-            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.APP_DYNAMODB_TABLE}"
-            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.APP_DYNAMODB_TABLE}/index/*"
-        - Effect: Allow
-          Action:
-            - s3:GetObject
-            - s3:PutObject
-          Resource: "arn:aws:s3:::jugda/*"
-        - Effect: Allow
-          Action:
-            - ses:SendEmail
-            - ses:SendTemplatedEmail
-            - ses:SendBulkTemplatedEmail
-          Resource: ${self:custom.secrets.${self:custom.tenant}Registration.aws.sesIdentity}
-        - Effect: Allow
-          Action:
-            - ses:SendTemplatedEmail
-            - ses:SendBulkTemplatedEmail
-          Resource: ${self:custom.secrets.${self:custom.tenant}Registration.aws.sesTemplate}
-        - Effect: Allow
-          Action:
-            - ses:CreateTemplate
-            - ses:UpdateTemplate
-          Resource: "*"
+  tracing:
+    apiGateway: true
+    lambda: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.APP_DYNAMODB_TABLE}"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.APP_DYNAMODB_TABLE}/index/*"
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource: "arn:aws:s3:::${self:custom.tenant}/*"
+    - Effect: Allow
+      Action:
+        - ses:SendEmail
+        - ses:SendTemplatedEmail
+        - ses:SendBulkTemplatedEmail
+      Resource: ${self:custom.secrets.aws.sesIdentity}
+    - Effect: Allow
+      Action:
+        - ses:CreateTemplate
+        - ses:UpdateTemplate
+      Resource: "*"
 
 custom:
-  tenant: ${env:TENANT, 'jugda'}
-  secrets: ${ssm:/aws/reference/secretsmanager/jugda-secrets}
+  tenant: ${opt:tenant, 'jugda'}
+  secrets: ${ssm:/aws/reference/secretsmanager/${self:custom.tenant}-registration~true}
+  localstack:
+    stages:
+      # list of stages for which the plugin should be enabled
+      - local
+    host: http://localhost  # optional - LocalStack host to connect to
+    edgePort: 4566  # optional - LocalStack edge port to connect to
+    autostart: true  # optional - Start LocalStack in Docker on Serverless deploy
+    lambda:
+      # Enable this flag to improve performance
+      mountCode: True
+    docker:
+      # Enable this flag to run "docker ..." commands as sudo
+      sudo: False
+  stages:
+    local:
 
 package:
   individually: true
 
 functions:
   admin:
-    handler: not.used.in.provided.runtime
+    handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler
     events:
       - http:
           path: /admin/{proxy+}
@@ -78,10 +92,10 @@ functions:
     package:
       artifact: target/function.zip
   public:
-    handler: not.used.in.provided.runtime
+    handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler
     environment:
-      SLACK_OAUTH_ACCESS_TOKEN: ${self:custom.secrets.${self:custom.tenant}Registration.slack.access_token}
-      SLACK_CHANNEL_GENERAL: ${self:custom.secrets.${self:custom.tenant}Registration.slack.channel_general}
+      SLACK_OAUTH_ACCESS_TOKEN: ${self:custom.secrets.slack.access_token}
+      SLACK_CHANNEL_GENERAL: ${self:custom.secrets.slack.channel_general}
     events:
       - http:
           path: /{proxy+}
@@ -89,16 +103,16 @@ functions:
     package:
       artifact: target/function.zip
   basicAuthorizer:
-    handler: src/main/js/basicAuthorizr.handler
-    runtime: nodejs18.x
+    handler: js/basicAuthorizr.handler
+    runtime: nodejs12.x
     memorySize: 128
     timeout: 3
     environment:
-      REGISTRATION_ADMIN: ${self:custom.secrets.${self:custom.tenant}Registration.registration.admin}
-      REGISTRATION_SECRET: ${self:custom.secrets.${self:custom.tenant}Registration.registration.secret}
+      REGISTRATION_ADMIN: ${self:custom.secrets.registration.admin}
+      REGISTRATION_SECRET: ${self:custom.secrets.registration.secret}
     package:
       include:
-        - src/main/js/basicAuthorizr.js
+        - js/basicAuthorizr.js
       exclude:
         - "*.*"
         - "*/**"
@@ -156,7 +170,3 @@ resources:
         RestApiId:
           Ref: ApiGatewayRestApi
         StatusCode: 401
-
-plugins:
-  - serverless-localstack
-  - serverless-deployment-bucket
